@@ -1,9 +1,9 @@
 # toggle-app
 
-##Simple toggle example
+## Simple toggle example
 
-###This project show how toggle features works using Togglz lib.
-###Instagram api is only as addon.
+### This project show how toggle features works using Togglz lib.
+### Instagram api is only as addon.
 
 Toggle url:
 
