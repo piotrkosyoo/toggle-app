@@ -19,7 +19,42 @@ public enum MyFeatures implements Feature {
     @EnabledByDefault
     @Configuration
     GET_LIST_FEATURE,
-
+    
+    @Label("Search user")
+    @EnabledByDefault
+    @Configuration
+    SEARCH_USER_FEATURE,
+    
+    @Label("Search user by handle")
+    @EnabledByDefault
+    @Configuration
+    GET_USER_FOLLOWERS,
+    
+    @Label("Follow user")
+    @EnabledByDefault
+    @Configuration
+    USER_FOLLOW,
+    
+    @Label("Unfollow user")
+    @EnabledByDefault
+    @Configuration
+    USER_UNFOLLOW,
+    
+    @Label("Get feed for a hashtag")
+    @EnabledByDefault
+    @Configuration
+    TAG_FEED,
+    
+    @Label("Perform a like operation for a media (hashtag)")
+    @EnabledByDefault
+    @Configuration
+    LIKE,
+    
+    @Label("Add a comment for a media (hashtag)")
+    @EnabledByDefault
+    @Configuration
+    COMMENT,
+    
     @Label("Login")
     @EnabledByDefault
     @Security

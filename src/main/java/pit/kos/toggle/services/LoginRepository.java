@@ -2,6 +2,7 @@ package pit.kos.toggle.services;
 
 import java.io.IOException;
 
+import pit.kos.toggle.entity.LoginData;
 import pit.kos.toggle.entity.User;
 
 /**
@@ -10,5 +11,5 @@ import pit.kos.toggle.entity.User;
  */
 
 public interface LoginRepository {
-    User login(String email, String password) throws IOException;
+    User login(LoginData loginData) throws IOException;
 }

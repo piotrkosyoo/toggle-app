@@ -39,7 +39,7 @@ public class LoginController {
 
         if (Validator.validateLoginForm(loginData.getEmail(), loginData.getPassword())) {
             try {
-                User logedUser = loginRepository.login(loginData.getEmail(), loginData.getPassword());
+                User logedUser = loginRepository.login(loginData);
                 return new ResponseEntity<>(logedUser.getInstagramLoginResult().getLogged_in_user(), HttpStatus.OK);
             } catch (Exception e) {
                 logger.info(e);

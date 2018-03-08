@@ -24,7 +24,7 @@ public class FeaturesAspect {
         if (featureAssociation.value().isActive()) {
             return joinPoint.proceed();
         } else {
-            LOG.info("Feature " + featureAssociation.value().name() + " is not enabled!");
+            LOG.error("Feature " + featureAssociation.value().name() + " is not enabled!");
             return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
         }
     }
