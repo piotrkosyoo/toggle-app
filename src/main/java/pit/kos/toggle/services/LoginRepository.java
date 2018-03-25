@@ -10,6 +10,7 @@ import pit.kos.toggle.entity.User;
  * 
  */
 
+@FunctionalInterface
 public interface LoginRepository {
     User login(LoginData loginData) throws IOException;
 }

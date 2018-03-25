@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import pit.kos.toggle.constant.Constants;
 import pit.kos.toggle.entity.LoginData;
@@ -17,7 +16,6 @@ import pit.kos.toggle.services.LoginRepository;
  * 
  */
 
-@Service
 public class LoginRepositoryImpl implements LoginRepository {
 
     private static final Logger logger = Logger.getLogger(LoginRepositoryImpl.class);
