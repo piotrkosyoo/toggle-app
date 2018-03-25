@@ -56,7 +56,7 @@ public class InstagramController {
 		try {
 			logger.info("search user:" + searchData.getUser());
 			if (Validator.validateSearchData(searchData)) {
-				InstagramSearchUsernameResult searchResult = loginRepository.login(searchData.getLoginData()).getInstagram4j().sendRequest(new InstagramSearchUsernameRequest(searchData.getUser()));
+				InstagramSearchUsernameResult searchResult = loginRepository.login(searchData.getLoginData().getEmail(), searchData.getLoginData().getPassword()).getInstagram4j().sendRequest(new InstagramSearchUsernameRequest(searchData.getUser()));
 				return new ResponseEntity<>(searchResult.getUser(), HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public class InstagramController {
 		try {
 			logger.info("getUserFollowers:" + followers.getPk());
 			if (Validator.validateFollowers(followers)) {
-				User user = loginRepository.login(followers.getLoginData());
+				User user = loginRepository.login(followers.getLoginData().getEmail(), followers.getLoginData().getPassword());
 				InstagramGetUserFollowersResult followersUser = user.getInstagram4j().sendRequest(new InstagramGetUserFollowersRequest(followers.getPk()));
 				return new ResponseEntity<>(followersUser.getUsers(), HttpStatus.OK);
 			}
@@ -87,7 +87,7 @@ public class InstagramController {
 		try {
 			logger.info("userFollow:" + followers.getPk());
 			if (Validator.validateFollowers(followers)) {
-				User user = loginRepository.login(followers.getLoginData());
+				User user = loginRepository.login(followers.getLoginData().getEmail(), followers.getLoginData().getPassword());
 				StatusResult result = user.getInstagram4j().sendRequest(new InstagramFollowRequest(followers.getPk()));
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
@@ -103,7 +103,7 @@ public class InstagramController {
 		try {
 			logger.info("userUnfollow:" + followers.getPk());
 			if (Validator.validateFollowers(followers)) {
-				User user = loginRepository.login(followers.getLoginData());
+				User user = loginRepository.login(followers.getLoginData().getEmail(), followers.getLoginData().getPassword());
 				StatusResult result = user.getInstagram4j().sendRequest(new InstagramUnfollowRequest(followers.getPk()));
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
@@ -119,7 +119,7 @@ public class InstagramController {
 		try {
 			logger.info("getHashTag:" + searchData.getTag());
 			if (Validator.validateSearchData(searchData)) {
-				InstagramFeedResult tagFeed = loginRepository.login(searchData.getLoginData()).getInstagram4j().sendRequest(new InstagramTagFeedRequest(searchData.getTag()));
+				InstagramFeedResult tagFeed = loginRepository.login(searchData.getLoginData().getEmail(), searchData.getLoginData().getPassword()).getInstagram4j().sendRequest(new InstagramTagFeedRequest(searchData.getTag()));
 				return new ResponseEntity<>(tagFeed, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -134,7 +134,7 @@ public class InstagramController {
 		try {
 			logger.info("like:" + media.getPk());
 			if (Validator.validateMediaLike(media)) {
-				StatusResult result = loginRepository.login(media.getLoginData()).getInstagram4j().sendRequest(new InstagramLikeRequest(media.getPk()));
+				StatusResult result = loginRepository.login(media.getLoginData().getEmail(), media.getLoginData().getPassword()).getInstagram4j().sendRequest(new InstagramLikeRequest(media.getPk()));
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -149,7 +149,7 @@ public class InstagramController {
 		try {
 			logger.info("comment:" + media.getPk());
 			if (Validator.validateMediaComment(media)) {
-				StatusResult result = loginRepository.login(media.getLoginData()).getInstagram4j().sendRequest(new InstagramPostCommentRequest(media.getPk(), media.getComment()));
+				StatusResult result = loginRepository.login(media.getLoginData().getEmail(), media.getLoginData().getPassword()).getInstagram4j().sendRequest(new InstagramPostCommentRequest(media.getPk(), media.getComment()));
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
 		} catch (Exception e) {

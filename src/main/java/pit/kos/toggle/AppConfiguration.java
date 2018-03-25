@@ -4,8 +4,8 @@ package pit.kos.toggle;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,15 +13,16 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.google.common.cache.CacheBuilder;
 
 import pit.kos.toggle.constant.Constants;
 import pit.kos.toggle.services.LoginRepository;
+import pit.kos.toggle.services.LoginServices;
 import pit.kos.toggle.services.impl.LoginRepositoryImpl;
 
 /**
@@ -55,7 +56,14 @@ public class AppConfiguration {
     }
 
     @Bean
-    public LoginRepository loginRepository() {
-        return new LoginRepositoryImpl();
+    @Scope(value="singleton")
+    public LoginRepository loginRepository(@Autowired LoginServices loginServices) {
+        return new LoginRepositoryImpl(loginServices);
+    }
+    
+    @Bean
+    @Scope(value="singleton")
+    public LoginServices loginServices() {
+        return new LoginServices();
     }
 }
